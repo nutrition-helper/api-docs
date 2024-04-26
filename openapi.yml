@@ -1,0 +1,864 @@
+openapi: 3.0.0
+info:
+  title: API for the NutritionHelper application :)
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+paths:
+  # Food
+  /food:
+    get:
+      summary: Get Food
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Food
+        schema: 
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      responses:
+        "200":
+          description: "OK"
+          content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Food'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    post:
+      summary: Create Food
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Food'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Food'
+    put:
+      summary: Update Food
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Food
+        schema: 
+          type: integer
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Food'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Food'
+    delete:
+      summary: Delete Food
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Food
+        schema: 
+          type: integer
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: "NOT FOUND"
+  /nutrient:
+    get:
+      summary: Get Nutrient
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Nutrient
+        schema: 
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      responses:
+        "200":
+          description: "OK"
+          content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Nutrient'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    post:
+      summary: Create Nutrient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nutrient'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Nutrient'
+    put:
+      summary: Update Nutrient
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Nutrient
+        schema: 
+          type: integer
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nutrient'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Nutrient'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Delete Nutrient
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Nutrient
+        schema: 
+          type: integer
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: "NOT FOUND"
+  # Logistics
+  /product:
+    get:
+      summary: Get Products
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Product
+        schema: 
+          type: integer
+      - name: ean
+        in: query
+        description: EAN of the Product
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    post:
+      summary: Create Product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Product'
+    put:
+      summary: Update Product
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Product
+        schema: 
+          type: integer
+      - name: ean
+        in: query
+        description: EAN of the Product
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Product'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Delete Product
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Product
+        schema: 
+          type: integer
+      - name: ean
+        in: query
+        description: EAN of the Product
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: "NOT FOUND"
+  /unitOfMeasurement:
+    get:
+      summary: Get UnitOfMeasurements
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: ID of the UnitOfMeasurement
+        schema: 
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                   $ref: '#/components/schemas/UnitOfMeasurement'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    post:
+      summary: Create a unitOfMeasurement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnitOfMeasurement'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnitOfMeasurement'
+    put:
+      summary: Update a unitOfMeasurement
+      parameters:
+      - name: id
+        in: query
+        description: ID of the UnitOfMeasurement
+        schema: 
+          type: integer
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnitOfMeasurement'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnitOfMeasurement'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Delete a UnitOfMeasurement
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+  # Recipe
+  /recipe:
+    get:
+      summary: Get recipe data
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: ID of the Recipe
+        schema: 
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+        "404":
+          description: "Recipe not found"   
+    post:
+      summary: Create a recipe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipe'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+    put:
+      summary: Update a recipe
+      description: Updates a recipe and returns it
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipe'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        "404":
+          description: "Recipe not found"   
+    delete:
+      summary: Delete a recipe
+      description: Deletes a recipe
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: "OK"
+        "404":
+          description: "Recipe not found"
+  # Todo
+  /todo:
+    get:
+      summary: Get TodoLists
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the TodoList
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoList'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    post:
+      summary: Create a TodoList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoList'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoList'
+    put:
+      summary: Update a TodoList
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the TodoList
+        schema:
+          type: integer
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoList'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoList'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Delete a TodoList
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the TodoList
+        schema:
+          type: integer
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: "NOT FOUND"
+  /todo/entry:
+    get:
+      summary: Get TodoList entries
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the TodoListEntry
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoListEntryWithChilds'
+    post:
+      summary: Create a TodoList entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoListEntry'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoListEntryWithChilds'
+    put:
+      summary: Update a TodoList entry
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the TodoListEntry
+        schema:
+          type: integer
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoListEntry'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoListEntryWithChilds'
+        "404":
+          description: "NOT FOUND"
+    delete:
+      summary: Delete a TodoList entry
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the TodoList entry
+        schema:
+          type: integer
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: "NOT FOUND"
+components:
+  schemas:
+    # Logistics
+    Brand:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: integer
+        amount:
+          type: number
+        foodId:
+          type: integer
+        uomId:
+          type: integer
+        brandId:
+          type: integer
+        nutritionFacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/NutritionFact'
+    UnitOfMeasurement:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        short:
+          type: string
+    # Food
+    Food:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+    Nutrient:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        calories:
+          type: integer
+    NutritionFact:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount:
+          type: number
+        nutrientId:
+          type: integer
+        productId:
+          type: integer
+        nutrient:
+          $ref: '#/components/schemas/Nutrient'
+    # Recipe
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        servings:
+          type: number
+          minimum: 1
+        sourceUrl:
+          type: string
+        thumbnailUrl:
+          type: string
+        recipeSteps:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipeStep'
+    RecipeStep:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        index:
+          description: The index of which the RecipeStep is part of the Recipe
+          type: integer
+        ingredients:
+          type: array
+          items:
+           $ref: '#/components/schemas/Ingredient'
+        recipeId:
+          type: integer
+    Ingredient:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount:
+          type: number
+        foodId:
+          type: integer
+        recipeStepId:
+          type: integer
+        uomId:
+          type: integer
+    # Todo-List
+    TodoList:
+      type: object
+      properties:
+        id:
+          type: integer
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TodoListEntryWithChilds'
+        title: 
+          type: string
+    TodoListEntry:
+      type: object
+      properties:
+        id:
+          type: integer
+        completed:
+          type: boolean
+        title: 
+          type: string
+        todoListId:
+          type: integer
+        parentId:
+          type: integer
+    TodoListEntryWithChilds:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/TodoListEntry'
+      - type: object
+        properties:
+          childEntries:
+            type: array
+            items:
+              $ref: '#/components/schemas/TodoListEntry'
