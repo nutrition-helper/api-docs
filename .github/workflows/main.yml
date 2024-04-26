@@ -21,6 +21,6 @@ jobs:
         git config user.email github-actions@github.com
         npm install
         npm run generate-docs
-        git add dist
+        git add -f dist
         git commit -m "update ghpages"
         git push origin ghpages
