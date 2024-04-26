@@ -26,4 +26,4 @@ jobs:
         git config user.email github-actions@github.com
         git add -A
         git commit -m "update ghpages"
-        git push -f git@github.com:nutrition-helper/api-docs.git ghpages
+        git push -f git@github.com:nutrition-helper/api-docs.git HEAD:ghpages
