@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-docs": "npx @openapitools/openapi-generator-cli generate -i openapi.yml -g html2 -o dist/"
+    "generate-docs-html2": "npx @openapitools/openapi-generator-cli generate -i openapi.yml -g html2 -o dist/",
+    "generate-docs-markdown": "npx @openapitools/openapi-generator-cli generate -i openapi.yml -g markdown -o dist/"
   },
   "repository": {
     "type": "git",
