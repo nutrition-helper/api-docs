@@ -537,15 +537,18 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TodoList'
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TodoList'
+        "400":
+          description: "NO ID PROVIDED"
         "404":
           description: "NOT FOUND"
-          content:
-            application/json:
-              schema:
-                type: string
     post:
       summary: Create a TodoList
       requestBody:
@@ -563,6 +566,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TodoList'
+        "404":
+          description: "NOT FOUND"
     put:
       summary: Update a TodoList
       parameters:
@@ -587,12 +592,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TodoList'
+        "400":
+          description: "NO ID PROVIDED"
         "404":
           description: "NOT FOUND"
-          content:
-            application/json:
-              schema:
-                type: string
     delete:
       summary: Delete a TodoList
       parameters:
@@ -609,6 +612,8 @@ paths:
             application/json:
               schema:
                 type: string
+        "400":
+          description: "NO ID PROVIDED"
         "404":
           description: "NOT FOUND"
   /todo/entry:
@@ -621,18 +626,6 @@ paths:
         description: The ID of the TodoListEntry
         schema:
           type: integer
-      - name: page
-        in: query
-        description: Page to look for
-        schema: 
-          type: integer
-          default: 1
-      - name: perPage
-        in: query
-        description: Items per page
-        schema:
-          type: integer
-          default: 50
       responses:
         "200":
           description: "OK"
@@ -640,6 +633,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TodoListEntryWithChilds'
+        "400":
+          description: "NO ID PROVIDED"
+        "404":
+          description: "NOT FOUND"
     post:
       summary: Create a TodoList entry
       requestBody:
@@ -681,6 +678,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TodoListEntryWithChilds'
+        "400":
+          description: "NO ID PROVIDED"
         "404":
           description: "NOT FOUND"
     delete:
@@ -699,6 +698,8 @@ paths:
             application/json:
               schema:
                 type: string
+        "400":
+          description: "NO ID PROVIDED"
         "404":
           description: "NOT FOUND"
 components:
@@ -805,14 +806,14 @@ components:
           type: string
         description:
           type: string
-        index:
-          description: The index of which the RecipeStep is part of the Recipe
-          type: integer
         ingredients:
           type: array
           items:
            $ref: '#/components/schemas/Ingredient'
         recipeId:
+          type: integer
+        recipeIndex:
+          description: The index of which the RecipeStep is part of the Recipe
           type: integer
     Ingredient:
       type: object
@@ -862,3 +863,18 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/TodoListEntry'
+    # Pagination
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          minimum: 1
+        perPage:
+          type: integer
+          minimum: 1
+        totalEntries:
+          type: integer
+        totalPages:
+          type: integer
+          minimum: 1
