@@ -513,7 +513,7 @@ No authorization required
 
 <a name="todoEntryGet"></a>
 # **todoEntryGet**
-> TodoListEntryWithChilds todoEntryGet(id, page, perPage)
+> TodoListEntryWithChilds todoEntryGet(id)
 
 Get TodoList entries
 
@@ -524,8 +524,6 @@ Get TodoList entries
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**| The ID of the TodoListEntry | [optional] [default to null] |
-| **page** | **Integer**| Page to look for | [optional] [default to 1] |
-| **perPage** | **Integer**| Items per page | [optional] [default to 50] |
 
 ### Return type
 
@@ -593,7 +591,7 @@ No authorization required
 
 <a name="todoGet"></a>
 # **todoGet**
-> List todoGet(id, page, perPage)
+> _todo_get_200_response todoGet(id, page, perPage)
 
 Get TodoLists
 
@@ -609,7 +607,7 @@ Get TodoLists
 
 ### Return type
 
-[**List**](../Models/TodoList.md)
+[**_todo_get_200_response**](../Models/_todo_get_200_response.md)
 
 ### Authorization
 

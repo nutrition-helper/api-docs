@@ -929,6 +929,26 @@ ul.nav-tabs {
     }
   }
 };
+    defs["Pagination"] = {
+  "type" : "object",
+  "properties" : {
+    "page" : {
+      "minimum" : 1,
+      "type" : "integer"
+    },
+    "perPage" : {
+      "minimum" : 1,
+      "type" : "integer"
+    },
+    "totalEntries" : {
+      "type" : "integer"
+    },
+    "totalPages" : {
+      "minimum" : 1,
+      "type" : "integer"
+    }
+  }
+};
     defs["Product"] = {
   "type" : "object",
   "properties" : {
@@ -997,10 +1017,6 @@ ul.nav-tabs {
     "description" : {
       "type" : "string"
     },
-    "index" : {
-      "type" : "integer",
-      "description" : "The index of which the RecipeStep is part of the Recipe"
-    },
     "ingredients" : {
       "type" : "array",
       "items" : {
@@ -1009,6 +1025,24 @@ ul.nav-tabs {
     },
     "recipeId" : {
       "type" : "integer"
+    },
+    "recipeIndex" : {
+      "type" : "integer",
+      "description" : "The index of which the RecipeStep is part of the Recipe"
+    }
+  }
+};
+    defs["_todo_get_200_response"] = {
+  "type" : "object",
+  "properties" : {
+    "pagination" : {
+      "$ref" : "#/components/schemas/Pagination"
+    },
+    "entries" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/TodoList"
+      }
     }
   }
 };
@@ -7839,41 +7873,41 @@ Items per page
   &quot;recipeSteps&quot; : [ {
     &quot;name&quot; : &quot;name&quot;,
     &quot;description&quot; : &quot;description&quot;,
-    &quot;index&quot; : 5,
     &quot;ingredients&quot; : [ {
-      &quot;amount&quot; : 2.3021358869347655,
-      &quot;foodId&quot; : 7,
-      &quot;uomId&quot; : 3,
+      &quot;amount&quot; : 5.637376656633329,
+      &quot;foodId&quot; : 2,
+      &quot;uomId&quot; : 9,
       &quot;id&quot; : 5,
-      &quot;recipeStepId&quot; : 9
+      &quot;recipeStepId&quot; : 7
     }, {
-      &quot;amount&quot; : 2.3021358869347655,
-      &quot;foodId&quot; : 7,
-      &quot;uomId&quot; : 3,
+      &quot;amount&quot; : 5.637376656633329,
+      &quot;foodId&quot; : 2,
+      &quot;uomId&quot; : 9,
       &quot;id&quot; : 5,
-      &quot;recipeStepId&quot; : 9
+      &quot;recipeStepId&quot; : 7
     } ],
     &quot;id&quot; : 1,
-    &quot;recipeId&quot; : 2
+    &quot;recipeIndex&quot; : 2,
+    &quot;recipeId&quot; : 3
   }, {
     &quot;name&quot; : &quot;name&quot;,
     &quot;description&quot; : &quot;description&quot;,
-    &quot;index&quot; : 5,
     &quot;ingredients&quot; : [ {
-      &quot;amount&quot; : 2.3021358869347655,
-      &quot;foodId&quot; : 7,
-      &quot;uomId&quot; : 3,
+      &quot;amount&quot; : 5.637376656633329,
+      &quot;foodId&quot; : 2,
+      &quot;uomId&quot; : 9,
       &quot;id&quot; : 5,
-      &quot;recipeStepId&quot; : 9
+      &quot;recipeStepId&quot; : 7
     }, {
-      &quot;amount&quot; : 2.3021358869347655,
-      &quot;foodId&quot; : 7,
-      &quot;uomId&quot; : 3,
+      &quot;amount&quot; : 5.637376656633329,
+      &quot;foodId&quot; : 2,
+      &quot;uomId&quot; : 9,
       &quot;id&quot; : 5,
-      &quot;recipeStepId&quot; : 9
+      &quot;recipeStepId&quot; : 7
     } ],
     &quot;id&quot; : 1,
-    &quot;recipeId&quot; : 2
+    &quot;recipeIndex&quot; : 2,
+    &quot;recipeId&quot; : 3
   } ],
   &quot;name&quot; : &quot;name&quot;,
   &quot;id&quot; : 0,
@@ -8269,41 +8303,41 @@ $(document).ready(function() {
   &quot;recipeSteps&quot; : [ {
     &quot;name&quot; : &quot;name&quot;,
     &quot;description&quot; : &quot;description&quot;,
-    &quot;index&quot; : 5,
     &quot;ingredients&quot; : [ {
-      &quot;amount&quot; : 2.3021358869347655,
-      &quot;foodId&quot; : 7,
-      &quot;uomId&quot; : 3,
+      &quot;amount&quot; : 5.637376656633329,
+      &quot;foodId&quot; : 2,
+      &quot;uomId&quot; : 9,
       &quot;id&quot; : 5,
-      &quot;recipeStepId&quot; : 9
+      &quot;recipeStepId&quot; : 7
     }, {
-      &quot;amount&quot; : 2.3021358869347655,
-      &quot;foodId&quot; : 7,
-      &quot;uomId&quot; : 3,
+      &quot;amount&quot; : 5.637376656633329,
+      &quot;foodId&quot; : 2,
+      &quot;uomId&quot; : 9,
       &quot;id&quot; : 5,
-      &quot;recipeStepId&quot; : 9
+      &quot;recipeStepId&quot; : 7
     } ],
     &quot;id&quot; : 1,
-    &quot;recipeId&quot; : 2
+    &quot;recipeIndex&quot; : 2,
+    &quot;recipeId&quot; : 3
   }, {
     &quot;name&quot; : &quot;name&quot;,
     &quot;description&quot; : &quot;description&quot;,
-    &quot;index&quot; : 5,
     &quot;ingredients&quot; : [ {
-      &quot;amount&quot; : 2.3021358869347655,
-      &quot;foodId&quot; : 7,
-      &quot;uomId&quot; : 3,
+      &quot;amount&quot; : 5.637376656633329,
+      &quot;foodId&quot; : 2,
+      &quot;uomId&quot; : 9,
       &quot;id&quot; : 5,
-      &quot;recipeStepId&quot; : 9
+      &quot;recipeStepId&quot; : 7
     }, {
-      &quot;amount&quot; : 2.3021358869347655,
-      &quot;foodId&quot; : 7,
-      &quot;uomId&quot; : 3,
+      &quot;amount&quot; : 5.637376656633329,
+      &quot;foodId&quot; : 2,
+      &quot;uomId&quot; : 9,
       &quot;id&quot; : 5,
-      &quot;recipeStepId&quot; : 9
+      &quot;recipeStepId&quot; : 7
     } ],
     &quot;id&quot; : 1,
-    &quot;recipeId&quot; : 2
+    &quot;recipeIndex&quot; : 2,
+    &quot;recipeId&quot; : 3
   } ],
   &quot;name&quot; : &quot;name&quot;,
   &quot;id&quot; : 0,
@@ -9119,6 +9153,68 @@ The ID of the TodoList
                                 <input id='responses-Default-todoDelete-200-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
+                            <h3 id="examples-Default-todoDelete-title-400"></h3>
+                            <p id="examples-Default-todoDelete-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `NO ID PROVIDED`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-todoDelete-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-todoDelete-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-todoDelete-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-todoDelete-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-todoDelete-400-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Default-todoDelete-400-schema">
+                                <div id="responses-Default-todoDelete-schema-400" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NO ID PROVIDED"
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        Object.keys(schema.properties).forEach( (item) => {
+                                          if (schema.properties[item].$ref != null) {
+                                            schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                          }
+                                        });
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Default-todoDelete-400-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Default-todoDelete-schema-400');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Default-todoDelete-400-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
                             <h3 id="examples-Default-todoDelete-title-404"></h3>
                             <p id="examples-Default-todoDelete-description-404" class="marked"></p>
                             <script>
@@ -9548,6 +9644,68 @@ The ID of the TodoList entry
                                 <input id='responses-Default-todoEntryDelete-200-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
+                            <h3 id="examples-Default-todoEntryDelete-title-400"></h3>
+                            <p id="examples-Default-todoEntryDelete-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `NO ID PROVIDED`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-todoEntryDelete-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-todoEntryDelete-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-todoEntryDelete-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-todoEntryDelete-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-todoEntryDelete-400-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Default-todoEntryDelete-400-schema">
+                                <div id="responses-Default-todoEntryDelete-schema-400" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NO ID PROVIDED"
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        Object.keys(schema.properties).forEach( (item) => {
+                                          if (schema.properties[item].$ref != null) {
+                                            schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                          }
+                                        });
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Default-todoEntryDelete-400-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Default-todoEntryDelete-schema-400');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Default-todoEntryDelete-400-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
                             <h3 id="examples-Default-todoEntryDelete-title-404"></h3>
                             <p id="examples-Default-todoEntryDelete-description-404" class="marked"></p>
                             <script>
@@ -9649,7 +9807,7 @@ The ID of the TodoList entry
                           <div class="tab-pane active" id="examples-Default-todoEntryGet-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  -H "Accept: application/json" \
- "http://localhost:8080/api/todo/entry?id=56&page=56&perPage=56"
+ "http://localhost:8080/api/todo/entry?id=56"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-todoEntryGet-0-java">
@@ -9667,11 +9825,9 @@ public class DefaultApiExample {
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         Integer id = 56; // Integer | The ID of the TodoListEntry
-        Integer page = 56; // Integer | Page to look for
-        Integer perPage = 56; // Integer | Items per page
 
         try {
-            TodoListEntryWithChilds result = apiInstance.todoEntryGet(id, page, perPage);
+            TodoListEntryWithChilds result = apiInstance.todoEntryGet(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#todoEntryGet");
@@ -9688,11 +9844,9 @@ public class DefaultApiExample {
 final api_instance = DefaultApi();
 
 final Integer id = new Integer(); // Integer | The ID of the TodoListEntry
-final Integer page = new Integer(); // Integer | Page to look for
-final Integer perPage = new Integer(); // Integer | Items per page
 
 try {
-    final result = await api_instance.todoEntryGet(id, page, perPage);
+    final result = await api_instance.todoEntryGet(id);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->todoEntryGet: $e\n');
@@ -9708,11 +9862,9 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         Integer id = 56; // Integer | The ID of the TodoListEntry
-        Integer page = 56; // Integer | Page to look for
-        Integer perPage = 56; // Integer | Items per page
 
         try {
-            TodoListEntryWithChilds result = apiInstance.todoEntryGet(id, page, perPage);
+            TodoListEntryWithChilds result = apiInstance.todoEntryGet(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#todoEntryGet");
@@ -9731,13 +9883,9 @@ public class DefaultApiExample {
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 Integer *id = 56; // The ID of the TodoListEntry (optional) (default to null)
-Integer *page = 56; // Page to look for (optional) (default to 1)
-Integer *perPage = 56; // Items per page (optional) (default to 50)
 
 // Get TodoList entries
 [apiInstance todoEntryGetWith:id
-    page:page
-    perPage:perPage
               completionHandler: ^(TodoListEntryWithChilds output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -9755,9 +9903,7 @@ Integer *perPage = 56; // Items per page (optional) (default to 50)
 // Create an instance of the API class
 var api = new ApiForTheNutritionHelperApplication.DefaultApi()
 var opts = {
-  'id': 56, // {Integer} The ID of the TodoListEntry
-  'page': 56, // {Integer} Page to look for
-  'perPage': 56 // {Integer} Items per page
+  'id': 56 // {Integer} The ID of the TodoListEntry
 };
 
 var callback = function(error, data, response) {
@@ -9791,12 +9937,10 @@ namespace Example
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var id = 56;  // Integer | The ID of the TodoListEntry (optional)  (default to null)
-            var page = 56;  // Integer | Page to look for (optional)  (default to 1)
-            var perPage = 56;  // Integer | Items per page (optional)  (default to 50)
 
             try {
                 // Get TodoList entries
-                TodoListEntryWithChilds result = apiInstance.todoEntryGet(id, page, perPage);
+                TodoListEntryWithChilds result = apiInstance.todoEntryGet(id);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.todoEntryGet: " + e.Message );
@@ -9814,11 +9958,9 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $id = 56; // Integer | The ID of the TodoListEntry
-$page = 56; // Integer | Page to look for
-$perPage = 56; // Integer | Items per page
 
 try {
-    $result = $api_instance->todoEntryGet($id, $page, $perPage);
+    $result = $api_instance->todoEntryGet($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->todoEntryGet: ', $e->getMessage(), PHP_EOL;
@@ -9834,11 +9976,9 @@ use WWW::OPenAPIClient::DefaultApi;
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $id = 56; # Integer | The ID of the TodoListEntry
-my $page = 56; # Integer | Page to look for
-my $perPage = 56; # Integer | Items per page
 
 eval {
-    my $result = $api_instance->todoEntryGet(id => $id, page => $page, perPage => $perPage);
+    my $result = $api_instance->todoEntryGet(id => $id);
     print Dumper($result);
 };
 if ($@) {
@@ -9856,12 +9996,10 @@ from pprint import pprint
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
 id = 56 # Integer | The ID of the TodoListEntry (optional) (default to null)
-page = 56 # Integer | Page to look for (optional) (default to 1)
-perPage = 56 # Integer | Items per page (optional) (default to 50)
 
 try:
     # Get TodoList entries
-    api_response = api_instance.todo_entry_get(id=id, page=page, perPage=perPage)
+    api_response = api_instance.todo_entry_get(id=id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->todoEntryGet: %s\n" % e)</code></pre>
@@ -9872,11 +10010,9 @@ except ApiException as e:
 
 pub fn main() {
     let id = 56; // Integer
-    let page = 56; // Integer
-    let perPage = 56; // Integer
 
     let mut context = DefaultApi::Context::default();
-    let result = client.todoEntryGet(id, page, perPage, &context).wait();
+    let result = client.todoEntryGet(id, &context).wait();
 
     println!("{:?}", result);
 }
@@ -9914,46 +10050,6 @@ pub fn main() {
 
                     <div class="inner description marked">
 The ID of the TodoListEntry
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                <tr><td style="width:150px;">page</td>
-<td>
-
-
-    <div id="d2e199_todoEntryGet_page">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    Integer
-                </span>
-
-                    <div class="inner description marked">
-Page to look for
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                <tr><td style="width:150px;">perPage</td>
-<td>
-
-
-    <div id="d2e199_todoEntryGet_perPage">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    Integer
-                </span>
-
-                    <div class="inner description marked">
-Items per page
                     </div>
             </div>
         </div>
@@ -10038,6 +10134,130 @@ Items per page
                                 <input id='responses-Default-todoEntryGet-200-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
+                            <h3 id="examples-Default-todoEntryGet-title-400"></h3>
+                            <p id="examples-Default-todoEntryGet-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `NO ID PROVIDED`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-todoEntryGet-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-todoEntryGet-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-todoEntryGet-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-todoEntryGet-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-todoEntryGet-400-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Default-todoEntryGet-400-schema">
+                                <div id="responses-Default-todoEntryGet-schema-400" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NO ID PROVIDED"
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        Object.keys(schema.properties).forEach( (item) => {
+                                          if (schema.properties[item].$ref != null) {
+                                            schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                          }
+                                        });
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Default-todoEntryGet-400-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Default-todoEntryGet-schema-400');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Default-todoEntryGet-400-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Default-todoEntryGet-title-404"></h3>
+                            <p id="examples-Default-todoEntryGet-description-404" class="marked"></p>
+                            <script>
+                              var responseDefault404_description = `NOT FOUND`;
+                              var responseDefault404_description_break = responseDefault404_description.indexOf('\n');
+                              if (responseDefault404_description_break == -1) {
+                                $("#examples-Default-todoEntryGet-title-404").text("Status: 404 - " + responseDefault404_description);
+                              } else {
+                                $("#examples-Default-todoEntryGet-title-404").text("Status: 404 - " + responseDefault404_description.substring(0, responseDefault404_description_break));
+                                $("#examples-Default-todoEntryGet-description-404").html(responseDefault404_description.substring(responseDefault404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-todoEntryGet-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-todoEntryGet-404-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Default-todoEntryGet-404-schema">
+                                <div id="responses-Default-todoEntryGet-schema-404" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NOT FOUND"
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        Object.keys(schema.properties).forEach( (item) => {
+                                          if (schema.properties[item].$ref != null) {
+                                            schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                          }
+                                        });
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Default-todoEntryGet-404-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Default-todoEntryGet-schema-404');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Default-todoEntryGet-404-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
                         </article>
                       </div>
                       <hr>
@@ -10081,10 +10301,10 @@ Items per page
  "http://localhost:8080/api/todo/entry" \
  -d '{
   &quot;todoListId&quot; : 2,
-  &quot;id&quot; : 5,
+  &quot;id&quot; : 3,
   &quot;completed&quot; : true,
   &quot;title&quot; : &quot;title&quot;,
-  &quot;parentId&quot; : 7
+  &quot;parentId&quot; : 4
 }'
 </code></pre>
                           </div>
@@ -10475,10 +10695,10 @@ $(document).ready(function() {
  "http://localhost:8080/api/todo/entry?id=56" \
  -d '{
   &quot;todoListId&quot; : 2,
-  &quot;id&quot; : 5,
+  &quot;id&quot; : 3,
   &quot;completed&quot; : true,
   &quot;title&quot; : &quot;title&quot;,
-  &quot;parentId&quot; : 7
+  &quot;parentId&quot; : 4
 }'
 </code></pre>
                           </div>
@@ -10867,6 +11087,68 @@ The ID of the TodoListEntry
                                 <input id='responses-Default-todoEntryPut-200-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
+                            <h3 id="examples-Default-todoEntryPut-title-400"></h3>
+                            <p id="examples-Default-todoEntryPut-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `NO ID PROVIDED`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-todoEntryPut-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-todoEntryPut-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-todoEntryPut-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-todoEntryPut-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-todoEntryPut-400-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Default-todoEntryPut-400-schema">
+                                <div id="responses-Default-todoEntryPut-schema-400" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NO ID PROVIDED"
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        Object.keys(schema.properties).forEach( (item) => {
+                                          if (schema.properties[item].$ref != null) {
+                                            schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                          }
+                                        });
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Default-todoEntryPut-400-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Default-todoEntryPut-schema-400');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Default-todoEntryPut-400-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
                             <h3 id="examples-Default-todoEntryPut-title-404"></h3>
                             <p id="examples-Default-todoEntryPut-description-404" class="marked"></p>
                             <script>
@@ -10990,7 +11272,7 @@ public class DefaultApiExample {
         Integer perPage = 56; // Integer | Items per page
 
         try {
-            array[TodoList] result = apiInstance.todoGet(id, page, perPage);
+            _todo_get_200_response result = apiInstance.todoGet(id, page, perPage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#todoGet");
@@ -11031,7 +11313,7 @@ public class DefaultApiExample {
         Integer perPage = 56; // Integer | Items per page
 
         try {
-            array[TodoList] result = apiInstance.todoGet(id, page, perPage);
+            _todo_get_200_response result = apiInstance.todoGet(id, page, perPage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#todoGet");
@@ -11057,7 +11339,7 @@ Integer *perPage = 56; // Items per page (optional) (default to 50)
 [apiInstance todoGetWith:id
     page:page
     perPage:perPage
-              completionHandler: ^(array[TodoList] output, NSError* error) {
+              completionHandler: ^(_todo_get_200_response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -11115,7 +11397,7 @@ namespace Example
 
             try {
                 // Get TodoLists
-                array[TodoList] result = apiInstance.todoGet(id, page, perPage);
+                _todo_get_200_response result = apiInstance.todoGet(id, page, perPage);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.todoGet: " + e.Message );
@@ -11318,10 +11600,7 @@ Items per page
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/TodoList"
-        }
+        "$ref" : "#/components/schemas/_todo_get_200_response"
       }
     }
   }
@@ -11360,6 +11639,68 @@ Items per page
                                 <input id='responses-Default-todoGet-200-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
+                            <h3 id="examples-Default-todoGet-title-400"></h3>
+                            <p id="examples-Default-todoGet-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `NO ID PROVIDED`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-todoGet-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-todoGet-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-todoGet-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-todoGet-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-todoGet-400-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Default-todoGet-400-schema">
+                                <div id="responses-Default-todoGet-schema-400" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NO ID PROVIDED"
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        Object.keys(schema.properties).forEach( (item) => {
+                                          if (schema.properties[item].$ref != null) {
+                                            schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                          }
+                                        });
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Default-todoGet-400-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Default-todoGet-schema-400');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Default-todoGet-400-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
                             <h3 id="examples-Default-todoGet-title-404"></h3>
                             <p id="examples-Default-todoGet-description-404" class="marked"></p>
                             <script>
@@ -11375,11 +11716,6 @@ Items per page
 
 
                             <ul id="responses-detail-Default-todoGet-404" class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-todoGet-404-schema">Schema</a>
-                                </li>
-
-
 
 
                             </ul>
@@ -11391,14 +11727,7 @@ Items per page
                                   <script>
                                     $(document).ready(function() {
                                       var schemaWrapper = {
-  "description" : "NOT FOUND",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "type" : "string"
-      }
-    }
-  }
+  "description" : "NOT FOUND"
 };
                                       var schema = findNode('schema',schemaWrapper).schema;
                                       if (!schema) {
@@ -11477,45 +11806,45 @@ Items per page
  "http://localhost:8080/api/todo" \
  -d '{
   &quot;entries&quot; : [ {
-    &quot;todoListId&quot; : 1,
-    &quot;id&quot; : 6,
+    &quot;todoListId&quot; : 7,
+    &quot;id&quot; : 2,
     &quot;completed&quot; : true,
     &quot;title&quot; : &quot;title&quot;,
-    &quot;parentId&quot; : 5,
+    &quot;parentId&quot; : 9,
     &quot;childEntries&quot; : [ {
       &quot;todoListId&quot; : 2,
-      &quot;id&quot; : 5,
+      &quot;id&quot; : 3,
       &quot;completed&quot; : true,
       &quot;title&quot; : &quot;title&quot;,
-      &quot;parentId&quot; : 7
+      &quot;parentId&quot; : 4
     }, {
       &quot;todoListId&quot; : 2,
-      &quot;id&quot; : 5,
+      &quot;id&quot; : 3,
       &quot;completed&quot; : true,
       &quot;title&quot; : &quot;title&quot;,
-      &quot;parentId&quot; : 7
+      &quot;parentId&quot; : 4
     } ]
   }, {
-    &quot;todoListId&quot; : 1,
-    &quot;id&quot; : 6,
+    &quot;todoListId&quot; : 7,
+    &quot;id&quot; : 2,
     &quot;completed&quot; : true,
     &quot;title&quot; : &quot;title&quot;,
-    &quot;parentId&quot; : 5,
+    &quot;parentId&quot; : 9,
     &quot;childEntries&quot; : [ {
       &quot;todoListId&quot; : 2,
-      &quot;id&quot; : 5,
+      &quot;id&quot; : 3,
       &quot;completed&quot; : true,
       &quot;title&quot; : &quot;title&quot;,
-      &quot;parentId&quot; : 7
+      &quot;parentId&quot; : 4
     }, {
       &quot;todoListId&quot; : 2,
-      &quot;id&quot; : 5,
+      &quot;id&quot; : 3,
       &quot;completed&quot; : true,
       &quot;title&quot; : &quot;title&quot;,
-      &quot;parentId&quot; : 7
+      &quot;parentId&quot; : 4
     } ]
   } ],
-  &quot;id&quot; : 0,
+  &quot;id&quot; : 5,
   &quot;title&quot; : &quot;title&quot;
 }'
 </code></pre>
@@ -11864,6 +12193,68 @@ $(document).ready(function() {
                                 <input id='responses-Default-todoPost-200-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
+                            <h3 id="examples-Default-todoPost-title-404"></h3>
+                            <p id="examples-Default-todoPost-description-404" class="marked"></p>
+                            <script>
+                              var responseDefault404_description = `NOT FOUND`;
+                              var responseDefault404_description_break = responseDefault404_description.indexOf('\n');
+                              if (responseDefault404_description_break == -1) {
+                                $("#examples-Default-todoPost-title-404").text("Status: 404 - " + responseDefault404_description);
+                              } else {
+                                $("#examples-Default-todoPost-title-404").text("Status: 404 - " + responseDefault404_description.substring(0, responseDefault404_description_break));
+                                $("#examples-Default-todoPost-description-404").html(responseDefault404_description.substring(responseDefault404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-todoPost-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-todoPost-404-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Default-todoPost-404-schema">
+                                <div id="responses-Default-todoPost-schema-404" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NOT FOUND"
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        Object.keys(schema.properties).forEach( (item) => {
+                                          if (schema.properties[item].$ref != null) {
+                                            schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                          }
+                                        });
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Default-todoPost-404-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Default-todoPost-schema-404');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Default-todoPost-404-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
                         </article>
                       </div>
                       <hr>
@@ -11907,45 +12298,45 @@ $(document).ready(function() {
  "http://localhost:8080/api/todo?id=56" \
  -d '{
   &quot;entries&quot; : [ {
-    &quot;todoListId&quot; : 1,
-    &quot;id&quot; : 6,
+    &quot;todoListId&quot; : 7,
+    &quot;id&quot; : 2,
     &quot;completed&quot; : true,
     &quot;title&quot; : &quot;title&quot;,
-    &quot;parentId&quot; : 5,
+    &quot;parentId&quot; : 9,
     &quot;childEntries&quot; : [ {
       &quot;todoListId&quot; : 2,
-      &quot;id&quot; : 5,
+      &quot;id&quot; : 3,
       &quot;completed&quot; : true,
       &quot;title&quot; : &quot;title&quot;,
-      &quot;parentId&quot; : 7
+      &quot;parentId&quot; : 4
     }, {
       &quot;todoListId&quot; : 2,
-      &quot;id&quot; : 5,
+      &quot;id&quot; : 3,
       &quot;completed&quot; : true,
       &quot;title&quot; : &quot;title&quot;,
-      &quot;parentId&quot; : 7
+      &quot;parentId&quot; : 4
     } ]
   }, {
-    &quot;todoListId&quot; : 1,
-    &quot;id&quot; : 6,
+    &quot;todoListId&quot; : 7,
+    &quot;id&quot; : 2,
     &quot;completed&quot; : true,
     &quot;title&quot; : &quot;title&quot;,
-    &quot;parentId&quot; : 5,
+    &quot;parentId&quot; : 9,
     &quot;childEntries&quot; : [ {
       &quot;todoListId&quot; : 2,
-      &quot;id&quot; : 5,
+      &quot;id&quot; : 3,
       &quot;completed&quot; : true,
       &quot;title&quot; : &quot;title&quot;,
-      &quot;parentId&quot; : 7
+      &quot;parentId&quot; : 4
     }, {
       &quot;todoListId&quot; : 2,
-      &quot;id&quot; : 5,
+      &quot;id&quot; : 3,
       &quot;completed&quot; : true,
       &quot;title&quot; : &quot;title&quot;,
-      &quot;parentId&quot; : 7
+      &quot;parentId&quot; : 4
     } ]
   } ],
-  &quot;id&quot; : 0,
+  &quot;id&quot; : 5,
   &quot;title&quot; : &quot;title&quot;
 }'
 </code></pre>
@@ -12335,6 +12726,68 @@ The ID of the TodoList
                                 <input id='responses-Default-todoPut-200-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
+                            <h3 id="examples-Default-todoPut-title-400"></h3>
+                            <p id="examples-Default-todoPut-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `NO ID PROVIDED`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-todoPut-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-todoPut-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-todoPut-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-todoPut-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-todoPut-400-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Default-todoPut-400-schema">
+                                <div id="responses-Default-todoPut-schema-400" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NO ID PROVIDED"
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        Object.keys(schema.properties).forEach( (item) => {
+                                          if (schema.properties[item].$ref != null) {
+                                            schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                          }
+                                        });
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Default-todoPut-400-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Default-todoPut-schema-400');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Default-todoPut-400-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
                             <h3 id="examples-Default-todoPut-title-404"></h3>
                             <p id="examples-Default-todoPut-description-404" class="marked"></p>
                             <script>
@@ -12350,11 +12803,6 @@ The ID of the TodoList
 
 
                             <ul id="responses-detail-Default-todoPut-404" class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-todoPut-404-schema">Schema</a>
-                                </li>
-
-
 
 
                             </ul>
@@ -12366,14 +12814,7 @@ The ID of the TodoList
                                   <script>
                                     $(document).ready(function() {
                                       var schemaWrapper = {
-  "description" : "NOT FOUND",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "type" : "string"
-      }
-    }
-  }
+  "description" : "NOT FOUND"
 };
                                       var schema = findNode('schema',schemaWrapper).schema;
                                       if (!schema) {
