@@ -272,7 +272,7 @@ No authorization required
 
 <a name="productGet"></a>
 # **productGet**
-> List productGet(id, ean, page, perPage)
+> List productGet(foodId, id, ean, page, perPage)
 
 Get Products
 
@@ -282,6 +282,7 @@ Get Products
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **foodId** | **Integer**| ID of a Food | [optional] [default to null] |
 | **id** | **Integer**| ID of the Product | [optional] [default to null] |
 | **ean** | **Integer**| EAN of the Product | [optional] [default to null] |
 | **page** | **Integer**| Page to look for | [optional] [default to 1] |

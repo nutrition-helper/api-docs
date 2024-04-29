@@ -5451,7 +5451,7 @@ EAN of the Product
                           <div class="tab-pane active" id="examples-Default-productGet-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  -H "Accept: application/json" \
- "http://localhost:8080/api/product?id=56&ean=56&page=56&perPage=56"
+ "http://localhost:8080/api/product?foodId=56&id=56&ean=56&page=56&perPage=56"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-productGet-0-java">
@@ -5468,13 +5468,14 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        Integer foodId = 56; // Integer | ID of a Food
         Integer id = 56; // Integer | ID of the Product
         Integer ean = 56; // Integer | EAN of the Product
         Integer page = 56; // Integer | Page to look for
         Integer perPage = 56; // Integer | Items per page
 
         try {
-            array[Product] result = apiInstance.productGet(id, ean, page, perPage);
+            array[Product] result = apiInstance.productGet(foodId, id, ean, page, perPage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#productGet");
@@ -5490,13 +5491,14 @@ public class DefaultApiExample {
 
 final api_instance = DefaultApi();
 
+final Integer foodId = new Integer(); // Integer | ID of a Food
 final Integer id = new Integer(); // Integer | ID of the Product
 final Integer ean = new Integer(); // Integer | EAN of the Product
 final Integer page = new Integer(); // Integer | Page to look for
 final Integer perPage = new Integer(); // Integer | Items per page
 
 try {
-    final result = await api_instance.productGet(id, ean, page, perPage);
+    final result = await api_instance.productGet(foodId, id, ean, page, perPage);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->productGet: $e\n');
@@ -5511,13 +5513,14 @@ try {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        Integer foodId = 56; // Integer | ID of a Food
         Integer id = 56; // Integer | ID of the Product
         Integer ean = 56; // Integer | EAN of the Product
         Integer page = 56; // Integer | Page to look for
         Integer perPage = 56; // Integer | Items per page
 
         try {
-            array[Product] result = apiInstance.productGet(id, ean, page, perPage);
+            array[Product] result = apiInstance.productGet(foodId, id, ean, page, perPage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#productGet");
@@ -5535,13 +5538,15 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+Integer *foodId = 56; // ID of a Food (optional) (default to null)
 Integer *id = 56; // ID of the Product (optional) (default to null)
 Integer *ean = 56; // EAN of the Product (optional) (default to null)
 Integer *page = 56; // Page to look for (optional) (default to 1)
 Integer *perPage = 56; // Items per page (optional) (default to 50)
 
 // Get Products
-[apiInstance productGetWith:id
+[apiInstance productGetWith:foodId
+    id:id
     ean:ean
     page:page
     perPage:perPage
@@ -5562,6 +5567,7 @@ Integer *perPage = 56; // Items per page (optional) (default to 50)
 // Create an instance of the API class
 var api = new ApiForTheNutritionHelperApplication.DefaultApi()
 var opts = {
+  'foodId': 56, // {Integer} ID of a Food
   'id': 56, // {Integer} ID of the Product
   'ean': 56, // {Integer} EAN of the Product
   'page': 56, // {Integer} Page to look for
@@ -5598,6 +5604,7 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
+            var foodId = 56;  // Integer | ID of a Food (optional)  (default to null)
             var id = 56;  // Integer | ID of the Product (optional)  (default to null)
             var ean = 56;  // Integer | EAN of the Product (optional)  (default to null)
             var page = 56;  // Integer | Page to look for (optional)  (default to 1)
@@ -5605,7 +5612,7 @@ namespace Example
 
             try {
                 // Get Products
-                array[Product] result = apiInstance.productGet(id, ean, page, perPage);
+                array[Product] result = apiInstance.productGet(foodId, id, ean, page, perPage);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.productGet: " + e.Message );
@@ -5622,13 +5629,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$foodId = 56; // Integer | ID of a Food
 $id = 56; // Integer | ID of the Product
 $ean = 56; // Integer | EAN of the Product
 $page = 56; // Integer | Page to look for
 $perPage = 56; // Integer | Items per page
 
 try {
-    $result = $api_instance->productGet($id, $ean, $page, $perPage);
+    $result = $api_instance->productGet($foodId, $id, $ean, $page, $perPage);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->productGet: ', $e->getMessage(), PHP_EOL;
@@ -5643,13 +5651,14 @@ use WWW::OPenAPIClient::DefaultApi;
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $foodId = 56; # Integer | ID of a Food
 my $id = 56; # Integer | ID of the Product
 my $ean = 56; # Integer | EAN of the Product
 my $page = 56; # Integer | Page to look for
 my $perPage = 56; # Integer | Items per page
 
 eval {
-    my $result = $api_instance->productGet(id => $id, ean => $ean, page => $page, perPage => $perPage);
+    my $result = $api_instance->productGet(foodId => $foodId, id => $id, ean => $ean, page => $page, perPage => $perPage);
     print Dumper($result);
 };
 if ($@) {
@@ -5666,6 +5675,7 @@ from pprint import pprint
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
+foodId = 56 # Integer | ID of a Food (optional) (default to null)
 id = 56 # Integer | ID of the Product (optional) (default to null)
 ean = 56 # Integer | EAN of the Product (optional) (default to null)
 page = 56 # Integer | Page to look for (optional) (default to 1)
@@ -5673,7 +5683,7 @@ perPage = 56 # Integer | Items per page (optional) (default to 50)
 
 try:
     # Get Products
-    api_response = api_instance.product_get(id=id, ean=ean, page=page, perPage=perPage)
+    api_response = api_instance.product_get(foodId=foodId, id=id, ean=ean, page=page, perPage=perPage)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->productGet: %s\n" % e)</code></pre>
@@ -5683,13 +5693,14 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let foodId = 56; // Integer
     let id = 56; // Integer
     let ean = 56; // Integer
     let page = 56; // Integer
     let perPage = 56; // Integer
 
     let mut context = DefaultApi::Context::default();
-    let result = client.productGet(id, ean, page, perPage, &context).wait();
+    let result = client.productGet(foodId, id, ean, page, perPage, &context).wait();
 
     println!("{:?}", result);
 }
@@ -5714,6 +5725,26 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
+                                <tr><td style="width:150px;">foodId</td>
+<td>
+
+
+    <div id="d2e199_productGet_foodId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description marked">
+ID of a Food
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
                                 <tr><td style="width:150px;">id</td>
 <td>
 
