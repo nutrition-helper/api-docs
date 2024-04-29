@@ -718,7 +718,7 @@ components:
         id:
           type: integer
         name:
-          type: integer
+          type: string
         amount:
           type: number
         foodId:
