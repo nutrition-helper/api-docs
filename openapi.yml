@@ -210,6 +210,11 @@ paths:
       summary: Get Products
       description: Either page or ID must be given
       parameters:
+      - name: foodId
+        in: query
+        description: ID of a Food
+        schema: 
+          type: integer
       - name: id
         in: query
         description: ID of the Product
