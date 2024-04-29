@@ -4,7 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **id** | **Integer** |  | [optional] [default to null] |
-| **name** | **Integer** |  | [optional] [default to null] |
+| **name** | **String** |  | [optional] [default to null] |
 | **amount** | **BigDecimal** |  | [optional] [default to null] |
 | **foodId** | **Integer** |  | [optional] [default to null] |
 | **uomId** | **Integer** |  | [optional] [default to null] |
