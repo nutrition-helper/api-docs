@@ -1,7 +1,8 @@
 openapi: 3.0.0
 info:
   title: API for the NutritionHelper application :)
-  version: 1.0.0
+  description: Describes the API that is used as APIEndpoint for the NutritionHelper
+  version: 0.1.0
 servers:
   - url: http://localhost:8080/api
 paths:
@@ -28,6 +29,11 @@ paths:
         schema:
           type: integer
           default: 50
+      - name: name
+        in: query
+        description: Name of the Food
+        schema:
+          type: string
       responses:
         "200":
           description: "OK"
@@ -204,6 +210,113 @@ paths:
                 type: string
         "404":
           description: "NOT FOUND"
+  /nutritionFact:
+    get:
+      summary: Get NutritionFact
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: ID of the NutritionFact
+        schema: 
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      - name: productId
+        in: query
+        description: productId of the NutritionFact
+        schema: 
+          type: string
+      responses:
+        "200":
+          description: "OK"
+          content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/NutritionFact'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    post:
+      summary: Create NutritionFact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NutritionFact'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/NutritionFact'
+    put:
+      summary: Update NutritionFact
+      parameters:
+      - name: id
+        in: query
+        description: ID of the NutritionFact
+        schema: 
+          type: integer
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NutritionFact'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/NutritionFact'
+        "404":
+          description: "NOT FOUND"
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Delete NutritionFact
+      parameters:
+      - name: id
+        in: query
+        description: ID of the NutritionFact
+        schema: 
+          type: integer
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: "NOT FOUND"
   # Logistics
   /product:
     get:
@@ -224,7 +337,7 @@ paths:
         in: query
         description: EAN of the Product
         schema:
-          type: integer
+          type: string
       - name: page
         in: query
         description: Page to look for
@@ -347,6 +460,11 @@ paths:
         schema:
           type: integer
           default: 50
+      - name: name
+        in: query
+        description: Name of the UnitOfMeasurement
+        schema:
+          type: string
       responses:
         "200":
           description: "OK"
@@ -513,6 +631,230 @@ paths:
           description: "OK"
         "404":
           description: "Recipe not found"
+  /recipeStep:
+    get:
+      summary: Get RecipeSteps
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the RecipeStep
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      - name: recipeId
+        in: query
+        description: The recipeId of the RecipeStep
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RecipeStep'
+        "400":
+          description: "NO ID PROVIDED"
+        "404":
+          description: "NOT FOUND"
+    post:
+      summary: Create a RecipeStep
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeStep'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecipeStep'
+        "404":
+          description: "NOT FOUND"
+    put:
+      summary: Update a RecipeStep
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the RecipeStep
+        schema:
+          type: integer
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeStep'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoList'
+        "400":
+          description: "NO ID PROVIDED"
+        "404":
+          description: "NOT FOUND"
+    delete:
+      summary: Delete a RecipeStep
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the RecipeStep
+        schema:
+          type: integer
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: "NO ID PROVIDED"
+        "404":
+          description: "NOT FOUND"
+  /ingredient:
+    get:
+      summary: Get Ingredients
+      description: Either page or ID must be given
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the Ingredient
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      - name: recipeStepId
+        in: query
+        description: The recipeStepId of the Ingredient
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Ingredient'
+        "400":
+          description: "NO ID PROVIDED"
+        "404":
+          description: "NOT FOUND"
+    post:
+      summary: Create a Ingredient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ingredient'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingredient'
+        "404":
+          description: "NOT FOUND"
+    put:
+      summary: Update a Ingredient
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the Ingredient
+        schema:
+          type: integer
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ingredient'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingredient'
+        "400":
+          description: "NO ID PROVIDED"
+        "404":
+          description: "NOT FOUND"
+    delete:
+      summary: Delete a Ingredient
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the Ingredient
+        schema:
+          type: integer
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: "NO ID PROVIDED"
+        "404":
+          description: "NOT FOUND"
   # Todo
   /todo:
     get:
@@ -631,13 +973,37 @@ paths:
         description: The ID of the TodoListEntry
         schema:
           type: integer
+      - name: page
+        in: query
+        description: Page to look for
+        schema: 
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+          default: 50
+      - name: todoListId
+        in: query
+        description: The todoListId of the TodoListEntry
+        schema:
+          type: integer
       responses:
         "200":
           description: "OK"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TodoListEntryWithChilds'
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TodoListEntryWithChilds'
         "400":
           description: "NO ID PROVIDED"
         "404":

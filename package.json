@@ -1,6 +1,6 @@
 {
   "name": "api-docs",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha",
   "description": "API Docs of the NutriHelper",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/nutrition-helper/api-docs.git"
   },
   "author": "Janik Köppel",
-  "license": "ISC",
+  "license": "GPL-3.0-only",
   "bugs": {
     "url": "https://github.com/nutrition-helper/api-docs/issues"
   },
