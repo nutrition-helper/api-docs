@@ -8,10 +8,18 @@ All URIs are relative to *http://localhost:8080/api*
 | [**foodGet**](DefaultApi.md#foodGet) | **GET** /food | Get Food |
 | [**foodPost**](DefaultApi.md#foodPost) | **POST** /food | Create Food |
 | [**foodPut**](DefaultApi.md#foodPut) | **PUT** /food | Update Food |
+| [**ingredientDelete**](DefaultApi.md#ingredientDelete) | **DELETE** /ingredient | Delete a Ingredient |
+| [**ingredientGet**](DefaultApi.md#ingredientGet) | **GET** /ingredient | Get Ingredients |
+| [**ingredientPost**](DefaultApi.md#ingredientPost) | **POST** /ingredient | Create a Ingredient |
+| [**ingredientPut**](DefaultApi.md#ingredientPut) | **PUT** /ingredient | Update a Ingredient |
 | [**nutrientDelete**](DefaultApi.md#nutrientDelete) | **DELETE** /nutrient | Delete Nutrient |
 | [**nutrientGet**](DefaultApi.md#nutrientGet) | **GET** /nutrient | Get Nutrient |
 | [**nutrientPost**](DefaultApi.md#nutrientPost) | **POST** /nutrient | Create Nutrient |
 | [**nutrientPut**](DefaultApi.md#nutrientPut) | **PUT** /nutrient | Update Nutrient |
+| [**nutritionFactDelete**](DefaultApi.md#nutritionFactDelete) | **DELETE** /nutritionFact | Delete NutritionFact |
+| [**nutritionFactGet**](DefaultApi.md#nutritionFactGet) | **GET** /nutritionFact | Get NutritionFact |
+| [**nutritionFactPost**](DefaultApi.md#nutritionFactPost) | **POST** /nutritionFact | Create NutritionFact |
+| [**nutritionFactPut**](DefaultApi.md#nutritionFactPut) | **PUT** /nutritionFact | Update NutritionFact |
 | [**productDelete**](DefaultApi.md#productDelete) | **DELETE** /product | Delete Product |
 | [**productGet**](DefaultApi.md#productGet) | **GET** /product | Get Products |
 | [**productPost**](DefaultApi.md#productPost) | **POST** /product | Create Product |
@@ -20,6 +28,10 @@ All URIs are relative to *http://localhost:8080/api*
 | [**recipeGet**](DefaultApi.md#recipeGet) | **GET** /recipe | Get recipe data |
 | [**recipePost**](DefaultApi.md#recipePost) | **POST** /recipe | Create a recipe |
 | [**recipePut**](DefaultApi.md#recipePut) | **PUT** /recipe | Update a recipe |
+| [**recipeStepDelete**](DefaultApi.md#recipeStepDelete) | **DELETE** /recipeStep | Delete a RecipeStep |
+| [**recipeStepGet**](DefaultApi.md#recipeStepGet) | **GET** /recipeStep | Get RecipeSteps |
+| [**recipeStepPost**](DefaultApi.md#recipeStepPost) | **POST** /recipeStep | Create a RecipeStep |
+| [**recipeStepPut**](DefaultApi.md#recipeStepPut) | **PUT** /recipeStep | Update a RecipeStep |
 | [**todoDelete**](DefaultApi.md#todoDelete) | **DELETE** /todo | Delete a TodoList |
 | [**todoEntryDelete**](DefaultApi.md#todoEntryDelete) | **DELETE** /todo/entry | Delete a TodoList entry |
 | [**todoEntryGet**](DefaultApi.md#todoEntryGet) | **GET** /todo/entry | Get TodoList entries |
@@ -61,7 +73,7 @@ No authorization required
 
 <a name="foodGet"></a>
 # **foodGet**
-> List foodGet(id, page, perPage)
+> List foodGet(id, page, perPage, name)
 
 Get Food
 
@@ -74,6 +86,7 @@ Get Food
 | **id** | **Integer**| ID of the Food | [optional] [default to null] |
 | **page** | **Integer**| Page to look for | [optional] [default to 1] |
 | **perPage** | **Integer**| Items per page | [optional] [default to 50] |
+| **name** | **String**| Name of the Food | [optional] [default to null] |
 
 ### Return type
 
@@ -129,6 +142,112 @@ Update Food
 ### Return type
 
 [**List**](../Models/Food.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="ingredientDelete"></a>
+# **ingredientDelete**
+> String ingredientDelete(id)
+
+Delete a Ingredient
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| The ID of the Ingredient | [default to null] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="ingredientGet"></a>
+# **ingredientGet**
+> _ingredient_get_200_response ingredientGet(id, page, perPage, recipeStepId)
+
+Get Ingredients
+
+    Either page or ID must be given
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| The ID of the Ingredient | [optional] [default to null] |
+| **page** | **Integer**| Page to look for | [optional] [default to 1] |
+| **perPage** | **Integer**| Items per page | [optional] [default to 50] |
+| **recipeStepId** | **Integer**| The recipeStepId of the Ingredient | [optional] [default to null] |
+
+### Return type
+
+[**_ingredient_get_200_response**](../Models/_ingredient_get_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="ingredientPost"></a>
+# **ingredientPost**
+> List ingredientPost(Ingredient)
+
+Create a Ingredient
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **Ingredient** | [**Ingredient**](../Models/Ingredient.md)|  | |
+
+### Return type
+
+[**List**](../Models/Ingredient.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="ingredientPut"></a>
+# **ingredientPut**
+> List ingredientPut(id, Ingredient)
+
+Update a Ingredient
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| The ID of the Ingredient | [default to null] |
+| **Ingredient** | [**Ingredient**](../Models/Ingredient.md)|  | |
+
+### Return type
+
+[**List**](../Models/Ingredient.md)
 
 ### Authorization
 
@@ -244,6 +363,112 @@ No authorization required
 - **Content-Type**: application/json
 - **Accept**: application/json
 
+<a name="nutritionFactDelete"></a>
+# **nutritionFactDelete**
+> String nutritionFactDelete(id)
+
+Delete NutritionFact
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| ID of the NutritionFact | [default to null] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="nutritionFactGet"></a>
+# **nutritionFactGet**
+> List nutritionFactGet(id, page, perPage, productId)
+
+Get NutritionFact
+
+    Either page or ID must be given
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| ID of the NutritionFact | [optional] [default to null] |
+| **page** | **Integer**| Page to look for | [optional] [default to 1] |
+| **perPage** | **Integer**| Items per page | [optional] [default to 50] |
+| **productId** | **String**| productId of the NutritionFact | [optional] [default to null] |
+
+### Return type
+
+[**List**](../Models/NutritionFact.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="nutritionFactPost"></a>
+# **nutritionFactPost**
+> List nutritionFactPost(NutritionFact)
+
+Create NutritionFact
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **NutritionFact** | [**NutritionFact**](../Models/NutritionFact.md)|  | |
+
+### Return type
+
+[**List**](../Models/NutritionFact.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="nutritionFactPut"></a>
+# **nutritionFactPut**
+> List nutritionFactPut(id, NutritionFact)
+
+Update NutritionFact
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| ID of the NutritionFact | [default to null] |
+| **NutritionFact** | [**NutritionFact**](../Models/NutritionFact.md)|  | |
+
+### Return type
+
+[**List**](../Models/NutritionFact.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
 <a name="productDelete"></a>
 # **productDelete**
 > String productDelete(id, ean)
@@ -284,7 +509,7 @@ Get Products
 |------------- | ------------- | ------------- | -------------|
 | **foodId** | **Integer**| ID of a Food | [optional] [default to null] |
 | **id** | **Integer**| ID of the Product | [optional] [default to null] |
-| **ean** | **Integer**| EAN of the Product | [optional] [default to null] |
+| **ean** | **String**| EAN of the Product | [optional] [default to null] |
 | **page** | **Integer**| Page to look for | [optional] [default to 1] |
 | **perPage** | **Integer**| Items per page | [optional] [default to 50] |
 
@@ -462,6 +687,112 @@ No authorization required
 - **Content-Type**: application/json
 - **Accept**: application/json
 
+<a name="recipeStepDelete"></a>
+# **recipeStepDelete**
+> String recipeStepDelete(id)
+
+Delete a RecipeStep
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| The ID of the RecipeStep | [default to null] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="recipeStepGet"></a>
+# **recipeStepGet**
+> _recipeStep_get_200_response recipeStepGet(id, page, perPage, recipeId)
+
+Get RecipeSteps
+
+    Either page or ID must be given
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| The ID of the RecipeStep | [optional] [default to null] |
+| **page** | **Integer**| Page to look for | [optional] [default to 1] |
+| **perPage** | **Integer**| Items per page | [optional] [default to 50] |
+| **recipeId** | **Integer**| The recipeId of the RecipeStep | [optional] [default to null] |
+
+### Return type
+
+[**_recipeStep_get_200_response**](../Models/_recipeStep_get_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="recipeStepPost"></a>
+# **recipeStepPost**
+> List recipeStepPost(RecipeStep)
+
+Create a RecipeStep
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **RecipeStep** | [**RecipeStep**](../Models/RecipeStep.md)|  | |
+
+### Return type
+
+[**List**](../Models/RecipeStep.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="recipeStepPut"></a>
+# **recipeStepPut**
+> List recipeStepPut(id, RecipeStep)
+
+Update a RecipeStep
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| The ID of the RecipeStep | [default to null] |
+| **RecipeStep** | [**RecipeStep**](../Models/RecipeStep.md)|  | |
+
+### Return type
+
+[**List**](../Models/TodoList.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
 <a name="todoDelete"></a>
 # **todoDelete**
 > String todoDelete(id)
@@ -514,7 +845,7 @@ No authorization required
 
 <a name="todoEntryGet"></a>
 # **todoEntryGet**
-> TodoListEntryWithChilds todoEntryGet(id)
+> _todo_entry_get_200_response todoEntryGet(id, page, perPage, todoListId)
 
 Get TodoList entries
 
@@ -525,10 +856,13 @@ Get TodoList entries
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**| The ID of the TodoListEntry | [optional] [default to null] |
+| **page** | **Integer**| Page to look for | [optional] [default to 1] |
+| **perPage** | **Integer**| Items per page | [optional] [default to 50] |
+| **todoListId** | **Integer**| The todoListId of the TodoListEntry | [optional] [default to null] |
 
 ### Return type
 
-[**TodoListEntryWithChilds**](../Models/TodoListEntryWithChilds.md)
+[**_todo_entry_get_200_response**](../Models/_todo_entry_get_200_response.md)
 
 ### Authorization
 
@@ -697,7 +1031,7 @@ No authorization required
 
 <a name="unitOfMeasurementGet"></a>
 # **unitOfMeasurementGet**
-> List unitOfMeasurementGet(id, page, perPage)
+> List unitOfMeasurementGet(id, page, perPage, name)
 
 Get UnitOfMeasurements
 
@@ -710,6 +1044,7 @@ Get UnitOfMeasurements
 | **id** | **Integer**| ID of the UnitOfMeasurement | [optional] [default to null] |
 | **page** | **Integer**| Page to look for | [optional] [default to 1] |
 | **perPage** | **Integer**| Items per page | [optional] [default to 50] |
+| **name** | **String**| Name of the UnitOfMeasurement | [optional] [default to null] |
 
 ### Return type
 
