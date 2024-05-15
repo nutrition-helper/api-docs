@@ -213,7 +213,7 @@ paths:
   /nutritionFact:
     get:
       summary: Get NutritionFact
-      description: Either page or ID must be given
+      description: Either id, productId or page must be given
       parameters:
       - name: id
         in: query
@@ -236,7 +236,7 @@ paths:
         in: query
         description: productId of the NutritionFact
         schema: 
-          type: string
+          type: integer
       responses:
         "200":
           description: "OK"
