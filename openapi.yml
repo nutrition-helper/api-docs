@@ -634,25 +634,13 @@ paths:
   /recipeStep:
     get:
       summary: Get RecipeSteps
-      description: Either page or ID must be given
+      description: Either recipeId or id must be given
       parameters:
       - name: id
         in: query
         description: The ID of the RecipeStep
         schema:
           type: integer
-      - name: page
-        in: query
-        description: Page to look for
-        schema: 
-          type: integer
-          default: 1
-      - name: perPage
-        in: query
-        description: Items per page
-        schema:
-          type: integer
-          default: 50
       - name: recipeId
         in: query
         description: The recipeId of the RecipeStep
@@ -664,14 +652,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  pagination:
-                    $ref: '#/components/schemas/Pagination'
-                  entries:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/RecipeStep'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RecipeStep'
         "400":
           description: "NO ID PROVIDED"
         "404":
@@ -753,18 +736,6 @@ paths:
         description: The ID of the Ingredient
         schema:
           type: integer
-      - name: page
-        in: query
-        description: Page to look for
-        schema: 
-          type: integer
-          default: 1
-      - name: perPage
-        in: query
-        description: Items per page
-        schema:
-          type: integer
-          default: 50
       - name: recipeStepId
         in: query
         description: The recipeStepId of the Ingredient
@@ -776,14 +747,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  pagination:
-                    $ref: '#/components/schemas/Pagination'
-                  entries:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Ingredient'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Ingredient'  
         "400":
           description: "NO ID PROVIDED"
         "404":
