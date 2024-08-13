@@ -65,8 +65,6 @@ All URIs are relative to *http://localhost:8080/api*
  - [TodoListEntry](./Models/TodoListEntry.md)
  - [TodoListEntryWithChilds](./Models/TodoListEntryWithChilds.md)
  - [UnitOfMeasurement](./Models/UnitOfMeasurement.md)
- - [_ingredient_get_200_response](./Models/_ingredient_get_200_response.md)
- - [_recipeStep_get_200_response](./Models/_recipeStep_get_200_response.md)
  - [_todo_entry_get_200_response](./Models/_todo_entry_get_200_response.md)
  - [_todo_get_200_response](./Models/_todo_get_200_response.md)
 

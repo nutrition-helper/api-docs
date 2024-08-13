@@ -179,7 +179,7 @@ No authorization required
 
 <a name="ingredientGet"></a>
 # **ingredientGet**
-> _ingredient_get_200_response ingredientGet(id, page, perPage, recipeStepId)
+> List ingredientGet(id, recipeStepId)
 
 Get Ingredients
 
@@ -190,13 +190,11 @@ Get Ingredients
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**| The ID of the Ingredient | [optional] [default to null] |
-| **page** | **Integer**| Page to look for | [optional] [default to 1] |
-| **perPage** | **Integer**| Items per page | [optional] [default to 50] |
 | **recipeStepId** | **Integer**| The recipeStepId of the Ingredient | [optional] [default to null] |
 
 ### Return type
 
-[**_ingredient_get_200_response**](../Models/_ingredient_get_200_response.md)
+[**List**](../Models/Ingredient.md)
 
 ### Authorization
 
@@ -394,7 +392,7 @@ No authorization required
 
 Get NutritionFact
 
-    Either page or ID must be given
+    Either id, productId or page must be given
 
 ### Parameters
 
@@ -403,7 +401,7 @@ Get NutritionFact
 | **id** | **Integer**| ID of the NutritionFact | [optional] [default to null] |
 | **page** | **Integer**| Page to look for | [optional] [default to 1] |
 | **perPage** | **Integer**| Items per page | [optional] [default to 50] |
-| **productId** | **String**| productId of the NutritionFact | [optional] [default to null] |
+| **productId** | **Integer**| productId of the NutritionFact | [optional] [default to null] |
 
 ### Return type
 
@@ -714,24 +712,22 @@ No authorization required
 
 <a name="recipeStepGet"></a>
 # **recipeStepGet**
-> _recipeStep_get_200_response recipeStepGet(id, page, perPage, recipeId)
+> List recipeStepGet(id, recipeId)
 
 Get RecipeSteps
 
-    Either page or ID must be given
+    Either recipeId or id must be given
 
 ### Parameters
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**| The ID of the RecipeStep | [optional] [default to null] |
-| **page** | **Integer**| Page to look for | [optional] [default to 1] |
-| **perPage** | **Integer**| Items per page | [optional] [default to 50] |
 | **recipeId** | **Integer**| The recipeId of the RecipeStep | [optional] [default to null] |
 
 ### Return type
 
-[**_recipeStep_get_200_response**](../Models/_recipeStep_get_200_response.md)
+[**List**](../Models/RecipeStep.md)
 
 ### Authorization
 

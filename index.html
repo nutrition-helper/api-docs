@@ -892,20 +892,6 @@ ul.nav-tabs {
     }
   }
 };
-    defs["_ingredient_get_200_response"] = {
-  "type" : "object",
-  "properties" : {
-    "pagination" : {
-      "$ref" : "#/components/schemas/Pagination"
-    },
-    "entries" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/Ingredient"
-      }
-    }
-  }
-};
     defs["Nutrient"] = {
   "type" : "object",
   "properties" : {
@@ -1043,20 +1029,6 @@ ul.nav-tabs {
     "recipeIndex" : {
       "type" : "integer",
       "description" : "The index of which the RecipeStep is part of the Recipe"
-    }
-  }
-};
-    defs["_recipeStep_get_200_response"] = {
-  "type" : "object",
-  "properties" : {
-    "pagination" : {
-      "$ref" : "#/components/schemas/Pagination"
-    },
-    "entries" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/RecipeStep"
-      }
     }
   }
 };
@@ -3757,7 +3729,7 @@ The ID of the Ingredient
                           <div class="tab-pane active" id="examples-Default-ingredientGet-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  -H "Accept: application/json" \
- "http://localhost:8080/api/ingredient?id=56&page=56&perPage=56&recipeStepId=56"
+ "http://localhost:8080/api/ingredient?id=56&recipeStepId=56"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-ingredientGet-0-java">
@@ -3775,12 +3747,10 @@ public class DefaultApiExample {
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         Integer id = 56; // Integer | The ID of the Ingredient
-        Integer page = 56; // Integer | Page to look for
-        Integer perPage = 56; // Integer | Items per page
         Integer recipeStepId = 56; // Integer | The recipeStepId of the Ingredient
 
         try {
-            _ingredient_get_200_response result = apiInstance.ingredientGet(id, page, perPage, recipeStepId);
+            array[Ingredient] result = apiInstance.ingredientGet(id, recipeStepId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#ingredientGet");
@@ -3797,12 +3767,10 @@ public class DefaultApiExample {
 final api_instance = DefaultApi();
 
 final Integer id = new Integer(); // Integer | The ID of the Ingredient
-final Integer page = new Integer(); // Integer | Page to look for
-final Integer perPage = new Integer(); // Integer | Items per page
 final Integer recipeStepId = new Integer(); // Integer | The recipeStepId of the Ingredient
 
 try {
-    final result = await api_instance.ingredientGet(id, page, perPage, recipeStepId);
+    final result = await api_instance.ingredientGet(id, recipeStepId);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->ingredientGet: $e\n');
@@ -3818,12 +3786,10 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         Integer id = 56; // Integer | The ID of the Ingredient
-        Integer page = 56; // Integer | Page to look for
-        Integer perPage = 56; // Integer | Items per page
         Integer recipeStepId = 56; // Integer | The recipeStepId of the Ingredient
 
         try {
-            _ingredient_get_200_response result = apiInstance.ingredientGet(id, page, perPage, recipeStepId);
+            array[Ingredient] result = apiInstance.ingredientGet(id, recipeStepId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#ingredientGet");
@@ -3842,16 +3808,12 @@ public class DefaultApiExample {
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 Integer *id = 56; // The ID of the Ingredient (optional) (default to null)
-Integer *page = 56; // Page to look for (optional) (default to 1)
-Integer *perPage = 56; // Items per page (optional) (default to 50)
 Integer *recipeStepId = 56; // The recipeStepId of the Ingredient (optional) (default to null)
 
 // Get Ingredients
 [apiInstance ingredientGetWith:id
-    page:page
-    perPage:perPage
     recipeStepId:recipeStepId
-              completionHandler: ^(_ingredient_get_200_response output, NSError* error) {
+              completionHandler: ^(array[Ingredient] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -3869,8 +3831,6 @@ Integer *recipeStepId = 56; // The recipeStepId of the Ingredient (optional) (de
 var api = new ApiForTheNutritionHelperApplication.DefaultApi()
 var opts = {
   'id': 56, // {Integer} The ID of the Ingredient
-  'page': 56, // {Integer} Page to look for
-  'perPage': 56, // {Integer} Items per page
   'recipeStepId': 56 // {Integer} The recipeStepId of the Ingredient
 };
 
@@ -3905,13 +3865,11 @@ namespace Example
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var id = 56;  // Integer | The ID of the Ingredient (optional)  (default to null)
-            var page = 56;  // Integer | Page to look for (optional)  (default to 1)
-            var perPage = 56;  // Integer | Items per page (optional)  (default to 50)
             var recipeStepId = 56;  // Integer | The recipeStepId of the Ingredient (optional)  (default to null)
 
             try {
                 // Get Ingredients
-                _ingredient_get_200_response result = apiInstance.ingredientGet(id, page, perPage, recipeStepId);
+                array[Ingredient] result = apiInstance.ingredientGet(id, recipeStepId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.ingredientGet: " + e.Message );
@@ -3929,12 +3887,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $id = 56; // Integer | The ID of the Ingredient
-$page = 56; // Integer | Page to look for
-$perPage = 56; // Integer | Items per page
 $recipeStepId = 56; // Integer | The recipeStepId of the Ingredient
 
 try {
-    $result = $api_instance->ingredientGet($id, $page, $perPage, $recipeStepId);
+    $result = $api_instance->ingredientGet($id, $recipeStepId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->ingredientGet: ', $e->getMessage(), PHP_EOL;
@@ -3950,12 +3906,10 @@ use WWW::OPenAPIClient::DefaultApi;
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $id = 56; # Integer | The ID of the Ingredient
-my $page = 56; # Integer | Page to look for
-my $perPage = 56; # Integer | Items per page
 my $recipeStepId = 56; # Integer | The recipeStepId of the Ingredient
 
 eval {
-    my $result = $api_instance->ingredientGet(id => $id, page => $page, perPage => $perPage, recipeStepId => $recipeStepId);
+    my $result = $api_instance->ingredientGet(id => $id, recipeStepId => $recipeStepId);
     print Dumper($result);
 };
 if ($@) {
@@ -3973,13 +3927,11 @@ from pprint import pprint
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
 id = 56 # Integer | The ID of the Ingredient (optional) (default to null)
-page = 56 # Integer | Page to look for (optional) (default to 1)
-perPage = 56 # Integer | Items per page (optional) (default to 50)
 recipeStepId = 56 # Integer | The recipeStepId of the Ingredient (optional) (default to null)
 
 try:
     # Get Ingredients
-    api_response = api_instance.ingredient_get(id=id, page=page, perPage=perPage, recipeStepId=recipeStepId)
+    api_response = api_instance.ingredient_get(id=id, recipeStepId=recipeStepId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->ingredientGet: %s\n" % e)</code></pre>
@@ -3990,12 +3942,10 @@ except ApiException as e:
 
 pub fn main() {
     let id = 56; // Integer
-    let page = 56; // Integer
-    let perPage = 56; // Integer
     let recipeStepId = 56; // Integer
 
     let mut context = DefaultApi::Context::default();
-    let result = client.ingredientGet(id, page, perPage, recipeStepId, &context).wait();
+    let result = client.ingredientGet(id, recipeStepId, &context).wait();
 
     println!("{:?}", result);
 }
@@ -4033,46 +3983,6 @@ pub fn main() {
 
                     <div class="inner description marked">
 The ID of the Ingredient
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                <tr><td style="width:150px;">page</td>
-<td>
-
-
-    <div id="d2e199_ingredientGet_page">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    Integer
-                </span>
-
-                    <div class="inner description marked">
-Page to look for
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                <tr><td style="width:150px;">perPage</td>
-<td>
-
-
-    <div id="d2e199_ingredientGet_perPage">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    Integer
-                </span>
-
-                    <div class="inner description marked">
-Items per page
                     </div>
             </div>
         </div>
@@ -4138,7 +4048,10 @@ The recipeStepId of the Ingredient
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/_ingredient_get_200_response"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Ingredient"
+        }
       }
     }
   }
@@ -7592,7 +7505,7 @@ ID of the NutritionFact
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Either page or ID must be given</p>
+                        <p class="marked">Either id, productId or page must be given</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/nutritionFact</span></code></pre>
@@ -7619,7 +7532,7 @@ ID of the NutritionFact
                           <div class="tab-pane active" id="examples-Default-nutritionFactGet-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  -H "Accept: application/json" \
- "http://localhost:8080/api/nutritionFact?id=56&page=56&perPage=56&productId=productId_example"
+ "http://localhost:8080/api/nutritionFact?id=56&page=56&perPage=56&productId=56"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-nutritionFactGet-0-java">
@@ -7639,7 +7552,7 @@ public class DefaultApiExample {
         Integer id = 56; // Integer | ID of the NutritionFact
         Integer page = 56; // Integer | Page to look for
         Integer perPage = 56; // Integer | Items per page
-        String productId = productId_example; // String | productId of the NutritionFact
+        Integer productId = 56; // Integer | productId of the NutritionFact
 
         try {
             array[NutritionFact] result = apiInstance.nutritionFactGet(id, page, perPage, productId);
@@ -7661,7 +7574,7 @@ final api_instance = DefaultApi();
 final Integer id = new Integer(); // Integer | ID of the NutritionFact
 final Integer page = new Integer(); // Integer | Page to look for
 final Integer perPage = new Integer(); // Integer | Items per page
-final String productId = new String(); // String | productId of the NutritionFact
+final Integer productId = new Integer(); // Integer | productId of the NutritionFact
 
 try {
     final result = await api_instance.nutritionFactGet(id, page, perPage, productId);
@@ -7682,7 +7595,7 @@ public class DefaultApiExample {
         Integer id = 56; // Integer | ID of the NutritionFact
         Integer page = 56; // Integer | Page to look for
         Integer perPage = 56; // Integer | Items per page
-        String productId = productId_example; // String | productId of the NutritionFact
+        Integer productId = 56; // Integer | productId of the NutritionFact
 
         try {
             array[NutritionFact] result = apiInstance.nutritionFactGet(id, page, perPage, productId);
@@ -7706,7 +7619,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 Integer *id = 56; // ID of the NutritionFact (optional) (default to null)
 Integer *page = 56; // Page to look for (optional) (default to 1)
 Integer *perPage = 56; // Items per page (optional) (default to 50)
-String *productId = productId_example; // productId of the NutritionFact (optional) (default to null)
+Integer *productId = 56; // productId of the NutritionFact (optional) (default to null)
 
 // Get NutritionFact
 [apiInstance nutritionFactGetWith:id
@@ -7733,7 +7646,7 @@ var opts = {
   'id': 56, // {Integer} ID of the NutritionFact
   'page': 56, // {Integer} Page to look for
   'perPage': 56, // {Integer} Items per page
-  'productId': productId_example // {String} productId of the NutritionFact
+  'productId': 56 // {Integer} productId of the NutritionFact
 };
 
 var callback = function(error, data, response) {
@@ -7769,7 +7682,7 @@ namespace Example
             var id = 56;  // Integer | ID of the NutritionFact (optional)  (default to null)
             var page = 56;  // Integer | Page to look for (optional)  (default to 1)
             var perPage = 56;  // Integer | Items per page (optional)  (default to 50)
-            var productId = productId_example;  // String | productId of the NutritionFact (optional)  (default to null)
+            var productId = 56;  // Integer | productId of the NutritionFact (optional)  (default to null)
 
             try {
                 // Get NutritionFact
@@ -7793,7 +7706,7 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $id = 56; // Integer | ID of the NutritionFact
 $page = 56; // Integer | Page to look for
 $perPage = 56; // Integer | Items per page
-$productId = productId_example; // String | productId of the NutritionFact
+$productId = 56; // Integer | productId of the NutritionFact
 
 try {
     $result = $api_instance->nutritionFactGet($id, $page, $perPage, $productId);
@@ -7814,7 +7727,7 @@ my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $id = 56; # Integer | ID of the NutritionFact
 my $page = 56; # Integer | Page to look for
 my $perPage = 56; # Integer | Items per page
-my $productId = productId_example; # String | productId of the NutritionFact
+my $productId = 56; # Integer | productId of the NutritionFact
 
 eval {
     my $result = $api_instance->nutritionFactGet(id => $id, page => $page, perPage => $perPage, productId => $productId);
@@ -7837,7 +7750,7 @@ api_instance = openapi_client.DefaultApi()
 id = 56 # Integer | ID of the NutritionFact (optional) (default to null)
 page = 56 # Integer | Page to look for (optional) (default to 1)
 perPage = 56 # Integer | Items per page (optional) (default to 50)
-productId = productId_example # String | productId of the NutritionFact (optional) (default to null)
+productId = 56 # Integer | productId of the NutritionFact (optional) (default to null)
 
 try:
     # Get NutritionFact
@@ -7854,7 +7767,7 @@ pub fn main() {
     let id = 56; // Integer
     let page = 56; // Integer
     let perPage = 56; // Integer
-    let productId = productId_example; // String
+    let productId = 56; // Integer
 
     let mut context = DefaultApi::Context::default();
     let result = client.nutritionFactGet(id, page, perPage, productId, &context).wait();
@@ -7950,7 +7863,7 @@ Items per page
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    String
+                    Integer
                 </span>
 
                     <div class="inner description marked">
@@ -13396,7 +13309,7 @@ The ID of the RecipeStep
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Either page or ID must be given</p>
+                        <p class="marked">Either recipeId or id must be given</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/recipeStep</span></code></pre>
@@ -13423,7 +13336,7 @@ The ID of the RecipeStep
                           <div class="tab-pane active" id="examples-Default-recipeStepGet-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  -H "Accept: application/json" \
- "http://localhost:8080/api/recipeStep?id=56&page=56&perPage=56&recipeId=56"
+ "http://localhost:8080/api/recipeStep?id=56&recipeId=56"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-recipeStepGet-0-java">
@@ -13441,12 +13354,10 @@ public class DefaultApiExample {
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         Integer id = 56; // Integer | The ID of the RecipeStep
-        Integer page = 56; // Integer | Page to look for
-        Integer perPage = 56; // Integer | Items per page
         Integer recipeId = 56; // Integer | The recipeId of the RecipeStep
 
         try {
-            _recipeStep_get_200_response result = apiInstance.recipeStepGet(id, page, perPage, recipeId);
+            array[RecipeStep] result = apiInstance.recipeStepGet(id, recipeId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#recipeStepGet");
@@ -13463,12 +13374,10 @@ public class DefaultApiExample {
 final api_instance = DefaultApi();
 
 final Integer id = new Integer(); // Integer | The ID of the RecipeStep
-final Integer page = new Integer(); // Integer | Page to look for
-final Integer perPage = new Integer(); // Integer | Items per page
 final Integer recipeId = new Integer(); // Integer | The recipeId of the RecipeStep
 
 try {
-    final result = await api_instance.recipeStepGet(id, page, perPage, recipeId);
+    final result = await api_instance.recipeStepGet(id, recipeId);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->recipeStepGet: $e\n');
@@ -13484,12 +13393,10 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         Integer id = 56; // Integer | The ID of the RecipeStep
-        Integer page = 56; // Integer | Page to look for
-        Integer perPage = 56; // Integer | Items per page
         Integer recipeId = 56; // Integer | The recipeId of the RecipeStep
 
         try {
-            _recipeStep_get_200_response result = apiInstance.recipeStepGet(id, page, perPage, recipeId);
+            array[RecipeStep] result = apiInstance.recipeStepGet(id, recipeId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#recipeStepGet");
@@ -13508,16 +13415,12 @@ public class DefaultApiExample {
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 Integer *id = 56; // The ID of the RecipeStep (optional) (default to null)
-Integer *page = 56; // Page to look for (optional) (default to 1)
-Integer *perPage = 56; // Items per page (optional) (default to 50)
 Integer *recipeId = 56; // The recipeId of the RecipeStep (optional) (default to null)
 
 // Get RecipeSteps
 [apiInstance recipeStepGetWith:id
-    page:page
-    perPage:perPage
     recipeId:recipeId
-              completionHandler: ^(_recipeStep_get_200_response output, NSError* error) {
+              completionHandler: ^(array[RecipeStep] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -13535,8 +13438,6 @@ Integer *recipeId = 56; // The recipeId of the RecipeStep (optional) (default to
 var api = new ApiForTheNutritionHelperApplication.DefaultApi()
 var opts = {
   'id': 56, // {Integer} The ID of the RecipeStep
-  'page': 56, // {Integer} Page to look for
-  'perPage': 56, // {Integer} Items per page
   'recipeId': 56 // {Integer} The recipeId of the RecipeStep
 };
 
@@ -13571,13 +13472,11 @@ namespace Example
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var id = 56;  // Integer | The ID of the RecipeStep (optional)  (default to null)
-            var page = 56;  // Integer | Page to look for (optional)  (default to 1)
-            var perPage = 56;  // Integer | Items per page (optional)  (default to 50)
             var recipeId = 56;  // Integer | The recipeId of the RecipeStep (optional)  (default to null)
 
             try {
                 // Get RecipeSteps
-                _recipeStep_get_200_response result = apiInstance.recipeStepGet(id, page, perPage, recipeId);
+                array[RecipeStep] result = apiInstance.recipeStepGet(id, recipeId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.recipeStepGet: " + e.Message );
@@ -13595,12 +13494,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $id = 56; // Integer | The ID of the RecipeStep
-$page = 56; // Integer | Page to look for
-$perPage = 56; // Integer | Items per page
 $recipeId = 56; // Integer | The recipeId of the RecipeStep
 
 try {
-    $result = $api_instance->recipeStepGet($id, $page, $perPage, $recipeId);
+    $result = $api_instance->recipeStepGet($id, $recipeId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->recipeStepGet: ', $e->getMessage(), PHP_EOL;
@@ -13616,12 +13513,10 @@ use WWW::OPenAPIClient::DefaultApi;
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $id = 56; # Integer | The ID of the RecipeStep
-my $page = 56; # Integer | Page to look for
-my $perPage = 56; # Integer | Items per page
 my $recipeId = 56; # Integer | The recipeId of the RecipeStep
 
 eval {
-    my $result = $api_instance->recipeStepGet(id => $id, page => $page, perPage => $perPage, recipeId => $recipeId);
+    my $result = $api_instance->recipeStepGet(id => $id, recipeId => $recipeId);
     print Dumper($result);
 };
 if ($@) {
@@ -13639,13 +13534,11 @@ from pprint import pprint
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
 id = 56 # Integer | The ID of the RecipeStep (optional) (default to null)
-page = 56 # Integer | Page to look for (optional) (default to 1)
-perPage = 56 # Integer | Items per page (optional) (default to 50)
 recipeId = 56 # Integer | The recipeId of the RecipeStep (optional) (default to null)
 
 try:
     # Get RecipeSteps
-    api_response = api_instance.recipe_step_get(id=id, page=page, perPage=perPage, recipeId=recipeId)
+    api_response = api_instance.recipe_step_get(id=id, recipeId=recipeId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->recipeStepGet: %s\n" % e)</code></pre>
@@ -13656,12 +13549,10 @@ except ApiException as e:
 
 pub fn main() {
     let id = 56; // Integer
-    let page = 56; // Integer
-    let perPage = 56; // Integer
     let recipeId = 56; // Integer
 
     let mut context = DefaultApi::Context::default();
-    let result = client.recipeStepGet(id, page, perPage, recipeId, &context).wait();
+    let result = client.recipeStepGet(id, recipeId, &context).wait();
 
     println!("{:?}", result);
 }
@@ -13699,46 +13590,6 @@ pub fn main() {
 
                     <div class="inner description marked">
 The ID of the RecipeStep
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                <tr><td style="width:150px;">page</td>
-<td>
-
-
-    <div id="d2e199_recipeStepGet_page">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    Integer
-                </span>
-
-                    <div class="inner description marked">
-Page to look for
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                <tr><td style="width:150px;">perPage</td>
-<td>
-
-
-    <div id="d2e199_recipeStepGet_perPage">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    Integer
-                </span>
-
-                    <div class="inner description marked">
-Items per page
                     </div>
             </div>
         </div>
@@ -13804,7 +13655,10 @@ The recipeId of the RecipeStep
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/_recipeStep_get_200_response"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/RecipeStep"
+        }
       }
     }
   }

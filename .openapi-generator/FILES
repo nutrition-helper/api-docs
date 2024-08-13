@@ -12,8 +12,6 @@ Models/TodoList.md
 Models/TodoListEntry.md
 Models/TodoListEntryWithChilds.md
 Models/UnitOfMeasurement.md
-Models/_ingredient_get_200_response.md
-Models/_recipeStep_get_200_response.md
 Models/_todo_entry_get_200_response.md
 Models/_todo_get_200_response.md
 README.md
