@@ -1,26 +1,27 @@
 on:
   push:
     branches:
-    - main
+      - main
 jobs:
   my_job:
     name: Create docs and push to ghpages
     runs-on: ubuntu-22.04
-    
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-java@v4.2.1
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-    - uses: actions/setup-node@v4
-    
-    - name: npm install, build and deploy to pages
-      run: |
-        npm install
-        npm run generate-docs-html2
-        npm run generate-docs-markdown
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: dist
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4.2.1
+        with:
+          distribution: "temurin"
+          java-version: "17"
+      - uses: actions/setup-node@v4
+
+      - name: npm install, build and deploy to pages
+        run: |
+          npm install -g @openapitools/openapi-generator-cli
+          npm install
+          npm run generate-docs-html2
+          npm run generate-docs-markdown
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
